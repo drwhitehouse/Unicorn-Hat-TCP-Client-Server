@@ -17,7 +17,7 @@ HOST, PORT ="10.201.0.36", 5000
 
 r,g,b = getcolour()
 
-data = " ".join(sys.argv[1:])
+data = str(r) + "," + str(g) + "," + str(b)
 
 # Create a socket (SOCK_STREAM means a TCP socket)
 sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
