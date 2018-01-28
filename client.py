@@ -32,5 +32,5 @@ try:
 finally:
     sock.close()
 
-print "Sent:     {}".format(data)
-print "Received: {}".format(received)
+#print "Sent:     {}".format(data)
+#print "Received: {}".format(received)
