@@ -14,6 +14,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     client. (This seems to mean it runs handle first...).
     """
 
+# This function flashes the hat.
+
     def pulse(self,r,g,b):
       unicorn.set_all(r,g,b)
       unicorn.show()
