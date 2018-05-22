@@ -1,36 +1,36 @@
 #!/usr/bin/env python
 
 import socket
-import sys
 from random import randint
-from random import randrange
 
 # Get colour
 
 def getcolour():
-  r = randint(0,255)
-  g = randint(0,255)
-  b = randint(0,255)
-  return[r,g,b]
+    red = randint(0, 255)
+    green = randint(0, 255)
+    blue = randint(0, 255)
+    return[red, green, blue]
 
-HOST, PORT ="10.201.0.36", 5000
+if __name__ == "__main__":
 
-r,g,b = getcolour()
+    HOST, PORT = "10.201.0.36", 5000
 
-data = str(r) + "," + str(g) + "," + str(b)
+    R, G, B = getcolour()
 
-# Create a socket (SOCK_STREAM means a TCP socket)
-sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    DATA = str(R) + "," + str(G) + "," + str(B)
 
-try:
-    # Connect to server and send data
-    sock.connect((HOST, PORT))
-    sock.sendall(data + "\n")
+    # Create a socket (SOCK_STREAM means a TCP socket)
+    SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
-    # Receive data from the server and shut down
-    received = sock.recv(1024)
-finally:
-    sock.close()
+    try:
+        # Connect to server and send data
+        SOCK.connect((HOST, PORT))
+        SOCK.sendall(DATA + "\n")
 
-#print "Sent:     {}".format(data)
-#print "Received: {}".format(received)
+        # Receive data from the server and shut down
+        RECEIVED = SOCK.recv(1024)
+    finally:
+        SOCK.close()
+
+    #print "Sent:     {}".format(DATA)
+    #print "Received: {}".format(RECEIVED)

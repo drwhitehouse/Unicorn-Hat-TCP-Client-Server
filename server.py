@@ -16,38 +16,39 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
 
 # This function flashes the hat.
 
-    def pulse(self,r,g,b):
-      unicorn.set_all(r,g,b)
-      unicorn.show()
-      time.sleep(0.5)
-      unicorn.set_all(0,0,0)
-      unicorn.show()
-      time.sleep(0.5)
+    @staticmethod
+    def pulse(myred, mygreen, myblue):
+        unicorn.set_all(myred, mygreen, myblue)
+        unicorn.show()
+        time.sleep(0.5)
+        unicorn.set_all(0, 0, 0)
+        unicorn.show()
+        time.sleep(0.5)
 
 # This function initialises the Unicorn hat.
 
-    def initunicorn(self):
-      unicorn.rotation(0)
-      unicorn.brightness(0.5)
-      unicorn.set_layout(unicorn.AUTO)
-      width,height=unicorn.get_shape()
-      return [width,height]
+    @staticmethod
+    def initunicorn():
+        unicorn.rotation(0)
+        unicorn.brightness(0.5)
+        unicorn.set_layout(unicorn.AUTO)
 
 #   This function takes the data sent by the client and splits it in to red, green, blue.
 
     def parsedata(self):
-        my_colors = self.data.split(",")
-        return my_colors
+        mycolour = self.data.split(",")
+        mycolour = map(int, mycolour)
+        return mycolour
 
     def handle(self):
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(1024).strip()
         print "{} wrote:".format(self.client_address[0])
         print "{}".format(self.data)
-        r,g,b = self.parsedata()
-	width,height = self.initunicorn()
-        for i in range (0,30):
-          self.pulse(int(r),int(g),int(b))
+        red, green, blue = self.parsedata()
+        self.initunicorn()
+        for _ in range(0, 30):
+            self.pulse(red, green, blue)
         # just send back the same data
         # self.request.sendall(self.data)
 
@@ -55,8 +56,8 @@ if __name__ == "__main__":
     HOST, PORT = "10.201.0.36", 5000
 
     # Create the server, binding as set above
-    server = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
+    SERVER = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
 
     # Activate the server; this will keep running until you
     # interrupt the program with Ctrl-C
-    server.serve_forever()
+    SERVER.serve_forever()
