@@ -50,7 +50,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         for _ in range(0, 30):
             self.pulse(red, green, blue)
         # just send back the same data
-        # self.request.sendall(self.data)
+        self.request.sendall(self.data)
 
 if __name__ == "__main__":
     HOST, PORT = "10.201.0.36", 5000

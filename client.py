@@ -32,5 +32,5 @@ if __name__ == "__main__":
     finally:
         SOCK.close()
 
-    #print "Sent:     {}".format(DATA)
-    #print "Received: {}".format(RECEIVED)
+    print "Sent:     {}".format(DATA)
+    print "Received: {}".format(RECEIVED)
