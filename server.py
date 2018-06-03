@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import time
+import socket
 import SocketServer
 import unicornhat as unicorn
 
@@ -43,7 +44,8 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     def handle(self):
         # self.request is the TCP socket connected to the client
         self.data = self.request.recv(1024).strip()
-        print "{} wrote:".format(self.client_address[0])
+        client = socket.gethostbyaddr(self.client_address[0])
+        print "{} sent:".format(client[0])
         print "{}".format(self.data)
         red, green, blue = self.parsedata()
         self.initunicorn()
@@ -56,8 +58,10 @@ if __name__ == "__main__":
     HOST, PORT = "10.201.0.36", 5000
 
     # Create the server, binding as set above
+
     SERVER = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
 
     # Activate the server; this will keep running until you
     # interrupt the program with Ctrl-C
+
     SERVER.serve_forever()
