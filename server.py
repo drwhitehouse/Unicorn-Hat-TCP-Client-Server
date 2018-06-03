@@ -1,7 +1,7 @@
+#!/usr/bin/env python
 """
 New Pi lightshow thing. Daemon runs on the Pi, clients run on nslu2.
 """
-#!/usr/bin/env python
 
 import time
 import socket
