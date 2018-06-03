@@ -3,4 +3,5 @@
  Simple client server for Unicorn Hat.
 Installation:
 
-- unicornhat python module needed
+- unicornhat python module
+- ansicolors python module
