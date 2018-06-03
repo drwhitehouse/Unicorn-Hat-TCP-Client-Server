@@ -1,3 +1,6 @@
+"""
+New Pi lightshow thing. Daemon runs on the Pi, clients run on nslu2.
+"""
 #!/usr/bin/env python
 
 import time
@@ -15,10 +18,10 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
     client. (This seems to mean it runs handle first...).
     """
 
-# This function flashes the hat.
 
     @staticmethod
     def pulse(myred, mygreen, myblue):
+        """ This function flashes the hat. """
         unicorn.set_all(myred, mygreen, myblue)
         unicorn.show()
         time.sleep(0.5)
@@ -26,17 +29,19 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         unicorn.show()
         time.sleep(0.5)
 
-# This function initialises the Unicorn hat.
-
     @staticmethod
     def initunicorn():
+        """ This function initialises the Unicorn hat. """
         unicorn.rotation(0)
         unicorn.brightness(0.5)
         unicorn.set_layout(unicorn.AUTO)
 
-#   This function takes the data sent by the client and splits it in to red, green, blue.
 
     def parsedata(self):
+        """
+        This function takes the data sent by the client
+        and splits it in to red, green, blue.
+        """
         mycolour = self.data.split(",")
         mycolour = map(int, mycolour)
         return mycolour
