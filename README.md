@@ -1,4 +1,6 @@
-# Lightshow README
+# **Unicorn-Hat-TCP-Client-Server**
 
-New Pi lightshow thing.
-Daemon runs on the Pi, clients run on nslu2.
+ Simple client server for Unicorn Hat.
+Installation:
+
+- unicornhat python module needed
