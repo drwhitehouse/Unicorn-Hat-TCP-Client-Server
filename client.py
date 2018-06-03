@@ -1,3 +1,7 @@
+"""
+Simple tcp client for the Unicorn Hat server.
+"""
+
 #!/usr/bin/env python
 
 import socket
@@ -6,6 +10,7 @@ from random import randint
 # Get colour
 
 def getcolour():
+    """ chooses a colour """
     red = randint(0, 255)
     green = randint(0, 255)
     blue = randint(0, 255)
