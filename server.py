@@ -7,7 +7,7 @@ import time
 import socket
 import SocketServer
 import unicornhat as unicorn
-import colors
+from colors import color
 
 class MyTCPHandler(SocketServer.BaseRequestHandler):
 
@@ -52,7 +52,7 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         self.data = self.request.recv(1024).strip()
         client = socket.gethostbyaddr(self.client_address[0])
         print "{} sent:".format(client[0])
-        print(colors('"{}".format(self.data)'self.data)
+        print(color(format(self.data), self.data.split(',')))
         red, green, blue = self.parsedata()
         self.initunicorn()
         for _ in range(0, 30):

@@ -1,8 +1,7 @@
+#!/usr/bin/env python
 """
 Simple tcp client for the Unicorn Hat server.
 """
-
-#!/usr/bin/env python
 
 import socket
 from random import randint
