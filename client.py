@@ -1,40 +1,46 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """
-Simple tcp client for the Unicorn Hat server.
+Placeholder docstring
 """
 
 import socket
-from random import randint
-
-# Get colour
+import random
 
 def getcolour():
-    """ chooses a colour """
-    red = randint(0, 255)
-    green = randint(0, 255)
-    blue = randint(0, 255)
+    """ Choose a colour """
+    red = random.randint(0, 255)
+    green = random.randint(0, 255)
+    blue = random.randint(0, 255)
     return[red, green, blue]
 
-if __name__ == "__main__":
+def printoutput(red, green, blue, data, received):
+    """ Print the output """
+    print("----------------")
+    print("Integers chosen:")
+    print(red, green, blue)
+    print("\n")
+    print("Sent:     {}".format(data))
+    print(type(data))
+    print(len(data))
+    print("\n")
+    print("Received: {}".format(received))
+    print(type(received))
+    print(len(received))
 
-    HOST, PORT = "10.201.0.36", 5000
+# Here we specify the HOST and PORT to send to, get the colours and assemble the DATA to be sent.
 
-    R, G, B = getcolour()
+HOST, PORT = "wongtaisin", 9999
+RED, GREEN, BLUE = getcolour()
+COLOURS = [RED, GREEN, BLUE]
+DATA = bytes(COLOURS)
 
-    DATA = str(R) + "," + str(G) + "," + str(B)
+# Create a socket (SOCK_STREAM means a TCP socket)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+    # Connect to server and send DATA
+    sock.connect((HOST, PORT))
+    sock.sendall(DATA)
 
-    # Create a socket (SOCK_STREAM means a TCP socket)
-    SOCK = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    # Receive data from the server and shut down
+    RECEIVED = sock.recv(3)
 
-    try:
-        # Connect to server and send data
-        SOCK.connect((HOST, PORT))
-        SOCK.sendall(DATA + "\n")
-
-        # Receive data from the server and shut down
-        RECEIVED = SOCK.recv(1024)
-    finally:
-        SOCK.close()
-
-    print "Sent:     {}".format(DATA)
-    print "Received: {}".format(RECEIVED)
+printoutput(RED, GREEN, BLUE, DATA, RECEIVED)

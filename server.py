@@ -1,24 +1,29 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 """
-New Pi lightshow thing. Daemon runs on the Pi, clients run on nslu2.
+placeholder docstring
 """
 
 import time
 import socket
-import SocketServer
+import socketserver
 import unicornhat as unicorn
 from colors import color
 
-class MyTCPHandler(SocketServer.BaseRequestHandler):
-
+class MyTCPHandler(socketserver.BaseRequestHandler):
     """
     The request handler class for our server.
 
     It is instantiated once per connection to the server, and must
     override the handle() method to implement communication to the
-    client. (This seems to mean it runs handle first...).
+    client.
     """
 
+    @staticmethod
+    def initunicorn():
+        """ This function initialises the Unicorn hat. """
+        unicorn.rotation(0)
+        unicorn.brightness(0.5)
+        unicorn.set_layout(unicorn.AUTO)
 
     @staticmethod
     def pulse(myred, mygreen, myblue):
@@ -30,44 +35,51 @@ class MyTCPHandler(SocketServer.BaseRequestHandler):
         unicorn.show()
         time.sleep(0.5)
 
-    @staticmethod
-    def initunicorn():
-        """ This function initialises the Unicorn hat. """
-        unicorn.rotation(0)
-        unicorn.brightness(0.5)
-        unicorn.set_layout(unicorn.AUTO)
+    def returnrgb(self):
+        """ Splits the data into 3 ints """
+        red = self.data[:1]
+        green = self.data[1:2]
+        blue = self.data[-1:]
+        intr = int.from_bytes(red, byteorder='big')
+        intg = int.from_bytes(green, byteorder='big')
+        intb = int.from_bytes(blue, byteorder='big')
+        return intr, intg, intb
 
+    def printoutput(self):
+        """ Prints the output """
+        client = socket.gethostbyaddr(self.client_address[0])
+        print("{} sent:".format(client[0]))
+        print("\n")
+        print(self.data)
+        print(type(self.data))
+        print("\n")
+        mycolour = tuple(self.returnrgb())
+        myints = ",".join(map(str, mycolour))
+        print(color(myints, mycolour))
+        print("Converted to integers for LEDS\n")
 
-    def parsedata(self):
-        """
-        This function takes the data sent by the client
-        and splits it in to red, green, blue.
-        """
-        mycolour = self.data.split(",")
-        mycolour = map(int, mycolour)
-        return mycolour
 
     def handle(self):
-        # self.request is the TCP socket connected to the client
-        self.data = self.request.recv(1024).strip()
-        client = socket.gethostbyaddr(self.client_address[0])
-        print "{} sent:".format(client[0])
-        print(color(format(self.data), self.data.split(',')))
-        red, green, blue = self.parsedata()
+        # self.request.recv is the TCP socket connected to the client
+        self.data = self.request.recv(3)
+        self.printoutput()
+        red, green, blue = self.returnrgb()
         self.initunicorn()
         for _ in range(0, 30):
             self.pulse(red, green, blue)
-        # just send back the same data
+
+        # just send back the same data.
         self.request.sendall(self.data)
 
 if __name__ == "__main__":
-    HOST, PORT = "10.201.0.36", 5000
 
-    # Create the server, binding as set above
+    # Here we specify our HOST and PORT to listen on:
 
-    SERVER = SocketServer.TCPServer((HOST, PORT), MyTCPHandler)
+    HOST, PORT = "wongtaisin", 9999
+
+    # Create the server, binding to localhost on port 9999
+    SERVER = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
 
     # Activate the server; this will keep running until you
     # interrupt the program with Ctrl-C
-
     SERVER.serve_forever()
