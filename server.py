@@ -10,13 +10,13 @@ import unicornhat as unicorn
 from colors import color
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
-    """
-    The request handler class for our server.
+      """
+      The request handler class for our server.
 
-    It is instantiated once per connection to the server, and must
-    override the handle() method to implement communication to the
-    client.
-    """
+      It is instantiated once per connection to the server, and must
+      override the handle() method to implement communication to the
+      client.
+      """
 
     @staticmethod
     def initunicorn():
@@ -49,6 +49,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         """ Prints the output """
         client = socket.gethostbyaddr(self.client_address[0])
         print("---")
+        print("\n")
         print("{} sent:".format(client[0]))
         print("\n")
         print(self.data)

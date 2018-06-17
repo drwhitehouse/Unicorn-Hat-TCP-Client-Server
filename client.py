@@ -16,6 +16,7 @@ def getcolour():
 def printoutput(red, green, blue, data, received):
     """ Print the output """
     print("----------------")
+    print("\n")
     print("Integers chosen:")
     print(red, green, blue)
     print("\n")
@@ -35,12 +36,16 @@ COLOURS = [RED, GREEN, BLUE]
 DATA = bytes(COLOURS)
 
 # Create a socket (SOCK_STREAM means a TCP socket)
+
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+
     # Connect to server and send DATA
+
     sock.connect((HOST, PORT))
     sock.sendall(DATA)
 
     # Receive data from the server and shut down
+
     RECEIVED = sock.recv(3)
 
 printoutput(RED, GREEN, BLUE, DATA, RECEIVED)
