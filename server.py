@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-placeholder docstring
+Simple Unicorn Hat tcp server.
 """
 
 import time
@@ -10,13 +10,13 @@ import unicornhat as unicorn
 from colors import color
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
-      """
-      The request handler class for our server.
+    """
+    The request handler class for our server.
 
-      It is instantiated once per connection to the server, and must
-      override the handle() method to implement communication to the
-      client.
-      """
+    It is instantiated once per connection to the server, and must
+    override the handle() method to implement communication to the
+    client.
+    """
 
     @staticmethod
     def initunicorn():
@@ -26,10 +26,20 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         unicorn.set_layout(unicorn.AUTO)
 
     def returnrgb(self):
-        """ Splits the data into 3 ints """
+        """ Slice the data and convert to 3 ints """
+
+        # So I think the slice step is a byte (because thats what 'self.data' is).
+        # [:1] from the start to the first?
+        # [1:2] from first to second?
+        # [-1:] -1 from the end. This works because we send 3 bytes.
+        # (Consider if we send more later!)
+
         red = self.data[:1]
         green = self.data[1:2]
         blue = self.data[-1:]
+
+        # And here we convert those 3 chunks which are still bytes, into ints:
+
         intr = int.from_bytes(red, byteorder='big')
         intg = int.from_bytes(green, byteorder='big')
         intb = int.from_bytes(blue, byteorder='big')
@@ -47,7 +57,13 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
     def printoutput(self):
         """ Prints the output """
+
+        # We get the hostname of the client for display.
+
         client = socket.gethostbyaddr(self.client_address[0])
+
+        # And print...
+
         print("---")
         print("\n")
         print("{} sent:".format(client[0]))
@@ -55,18 +71,38 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print(self.data)
         print(type(self.data))
         print("\n")
+
+        # The ansicolor or whatever its called will accept a tuple, nice!
+
         mycolour = tuple(self.returnrgb())
+
+        # Make a comma delimited string from the tuple:
+
         myints = ",".join(map(str, mycolour))
+
+        # And print...
+
         print("Converted to integers for LEDS:\n")
         print(color(myints, mycolour))
         print("\n")
 
     def handle(self):
+        """ Request handler """
+
         # self.request.recv is the TCP socket connected to the client
+
         self.data = self.request.recv(3)
+
+        # And print...
+
         self.printoutput()
-        # Just send back the same data.
+
+        # Just send back the same data we received.
+
         self.request.sendall(self.data)
+
+        # Init the Unicorn Hat and flash!
+
         self.initunicorn()
         for _ in range(0, 30):
             self.pulse()
@@ -78,8 +114,10 @@ if __name__ == "__main__":
     HOST, PORT = "wongtaisin", 9999
 
     # Create the server, binding to localhost on port 9999
+
     SERVER = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
 
     # Activate the server; this will keep running until you
     # interrupt the program with Ctrl-C
+
     SERVER.serve_forever()

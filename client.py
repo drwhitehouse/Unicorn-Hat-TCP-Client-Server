@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-Placeholder docstring
+Simple Unicorn Hat tcp client.
 """
 
 import socket
