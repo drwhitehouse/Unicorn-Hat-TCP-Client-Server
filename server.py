@@ -55,8 +55,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("\n")
         mycolour = tuple(self.returnrgb())
         myints = ",".join(map(str, mycolour))
+        print("Converted to integers for LEDS:\n")
         print(color(myints, mycolour))
-        print("Converted to integers for LEDS\n")
 
     def handle(self):
         # self.request.recv is the TCP socket connected to the client
