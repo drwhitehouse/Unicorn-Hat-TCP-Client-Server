@@ -25,16 +25,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         unicorn.brightness(0.5)
         unicorn.set_layout(unicorn.AUTO)
 
-    @staticmethod
-    def pulse(myred, mygreen, myblue):
-        """ This function flashes the hat. """
-        unicorn.set_all(myred, mygreen, myblue)
-        unicorn.show()
-        time.sleep(0.5)
-        unicorn.set_all(0, 0, 0)
-        unicorn.show()
-        time.sleep(0.5)
-
     def returnrgb(self):
         """ Splits the data into 3 ints """
         red = self.data[:1]
@@ -44,6 +34,16 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         intg = int.from_bytes(green, byteorder='big')
         intb = int.from_bytes(blue, byteorder='big')
         return intr, intg, intb
+
+    def pulse(self):
+        """ This function flashes the hat. """
+        myred, mygreen, myblue = self.returnrgb()
+        unicorn.set_all(myred, mygreen, myblue)
+        unicorn.show()
+        time.sleep(0.5)
+        unicorn.set_all(0, 0, 0)
+        unicorn.show()
+        time.sleep(0.5)
 
     def printoutput(self):
         """ Prints the output """
@@ -64,10 +64,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         self.printoutput()
         # Just send back the same data.
         self.request.sendall(self.data)
-        red, green, blue = self.returnrgb()
         self.initunicorn()
         for _ in range(0, 30):
-            self.pulse(red, green, blue)
+            self.pulse()
 
 if __name__ == "__main__":
 
