@@ -48,6 +48,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
     def printoutput(self):
         """ Prints the output """
         client = socket.gethostbyaddr(self.client_address[0])
+        print("---")
         print("{} sent:".format(client[0]))
         print("\n")
         print(self.data)
@@ -57,6 +58,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         myints = ",".join(map(str, mycolour))
         print("Converted to integers for LEDS:\n")
         print(color(myints, mycolour))
+        print("\n")
 
     def handle(self):
         # self.request.recv is the TCP socket connected to the client
