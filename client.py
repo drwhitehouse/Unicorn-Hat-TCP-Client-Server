@@ -20,20 +20,12 @@ def printoutput(red, green, blue, data, received):
     print("Data Sent:       {}".format(data))
     print("Data Type Tx:    {}".format(type(data)))
     print("Data Length Tx:  {}".format(len(data)))
-<<<<<<< HEAD
-    print("Data Received:   {}".format(received))
-    print("Data Type Rx:    {}".format(type(received)))
-    print("Data Length Rx:  {}".format(len(received)))
-    print("----------------")
-    print("\n")
-=======
     print("\n")
     print("Data Received:   {}".format(received))
     print("Data Type Rx:    {}".format(type(received)))
     print("Data Length Rx:  {}".format(len(received)))
     print("----------------")
     print("\n")
->>>>>>> Print Format Bonanza
 
 # Here we specify the HOST and PORT to send to, get the colours and assemble the DATA to be sent.
 

@@ -72,16 +72,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # And print...
 
-<<<<<<< HEAD
-        print("------------------")
-        print("Client Hostname:   {}".format(client[0]))
-        print("Data Received:     {}".format(self.data))
-        print("Data Type Rx:      {}".format(type(self.data)))
-        print("Data Length Rx:    {}".format(len(self.data)))
-        print("Converted To Ints: {}".format(myints))
-        print(color("LED Colour", mycolour))
-        print("------------------")
-=======
         print("----------------")
         print("Client Hostname: {}".format(client[0]))
         print("Data Received:   {}".format(self.data))
@@ -90,7 +80,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("Integers:        {}".format(myints))
         print(color("LED Colour", mycolour))
         print("----------------")
->>>>>>> Print Format Bonanza
         print("\n")
 
     def handle(self):
