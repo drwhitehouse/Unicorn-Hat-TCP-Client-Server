@@ -62,16 +62,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         client = socket.gethostbyaddr(self.client_address[0])
 
-        # And print...
-
-        print("---")
-        print("\n")
-        print("{} sent:".format(client[0]))
-        print("\n")
-        print(self.data)
-        print(type(self.data))
-        print("\n")
-
         # The ansicolor or whatever its called will accept a tuple, nice!
 
         mycolour = tuple(self.returnrgb())
@@ -82,8 +72,14 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # And print...
 
-        print("Converted to integers for LEDS:\n")
-        print(color(myints, mycolour))
+        print("------------------")
+        print("Client Hostname:   {}".format(client[0]))
+        print("Data Received:     {}".format(self.data))
+        print("Data Type Rx:      {}".format(type(self.data)))
+        print("Data Length Rx:    {}".format(len(self.data)))
+        print("Converted To Ints: {}".format(myints))
+        print(color("LED Colour", mycolour))
+        print("------------------")
         print("\n")
 
     def handle(self):

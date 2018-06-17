@@ -16,17 +16,15 @@ def getcolour():
 def printoutput(red, green, blue, data, received):
     """ Print the output """
     print("----------------")
+    print("Integers Chosen: {},{},{}".format(red, green, blue))
+    print("Data Sent:       {}".format(data))
+    print("Data Type Tx:    {}".format(type(data)))
+    print("Data Length Tx:  {}".format(len(data)))
+    print("Data Received:   {}".format(received))
+    print("Data Type Rx:    {}".format(type(received)))
+    print("Data Length Rx:  {}".format(len(received)))
+    print("----------------")
     print("\n")
-    print("Integers chosen:")
-    print(red, green, blue)
-    print("\n")
-    print("Sent:     {}".format(data))
-    print(type(data))
-    print(len(data))
-    print("\n")
-    print("Received: {}".format(received))
-    print(type(received))
-    print(len(received))
 
 # Here we specify the HOST and PORT to send to, get the colours and assemble the DATA to be sent.
 
