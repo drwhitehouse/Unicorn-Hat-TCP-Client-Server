@@ -58,18 +58,16 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print(color(myints, mycolour))
         print("Converted to integers for LEDS\n")
 
-
     def handle(self):
         # self.request.recv is the TCP socket connected to the client
         self.data = self.request.recv(3)
         self.printoutput()
+        # Just send back the same data.
+        self.request.sendall(self.data)
         red, green, blue = self.returnrgb()
         self.initunicorn()
         for _ in range(0, 30):
             self.pulse(red, green, blue)
-
-        # just send back the same data.
-        self.request.sendall(self.data)
 
 if __name__ == "__main__":
 
