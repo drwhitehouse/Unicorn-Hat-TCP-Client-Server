@@ -80,7 +80,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("Integers:        {}".format(myints))
         print(color("LED Colour", mycolour))
         print("----------------")
-        print("\n")
+        print("\n", end='')
 
     def handle(self):
         """ Request handler """
