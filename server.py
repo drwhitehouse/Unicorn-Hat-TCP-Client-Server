@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
     # Here we specify our HOST and PORT to listen on:
 
-    HOST, PORT = "wongtaisin", 9999
+    HOST, PORT = "10.201.0.36", 9999
 
     # Create the server, binding to localhost on port 9999
 
