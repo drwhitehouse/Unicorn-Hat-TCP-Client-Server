@@ -3,7 +3,7 @@
 Simple Unicorn Hat tcp server.
 """
 
-import uhl.lsd
+import uhl.lightshow
 import time
 import socket
 import socketserver
@@ -54,7 +54,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         myints = ",".join(map(str, mycolour))
 
         # And print...
-        print(chr(27) + "[2J", end='')
         print("----------------")
         print("Time:           ", self.localtime)
         print("\n", end='')
@@ -91,12 +90,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         RED, GREEN, BLUE = self.returnrgb()
 
-        # Init the Unicorn Hat and flash!
+        # Flash the hat
 
-        uhl.lsd.initunicornhat()
-
-        for _ in range(0, 30):
-            uhl.lsd.pulse(RED, GREEN, BLUE)
+        uhl.lightshow.lightshow(RED, GREEN, BLUE)
 
 if __name__ == "__main__":
 
