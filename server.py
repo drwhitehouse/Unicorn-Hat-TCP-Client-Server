@@ -56,7 +56,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         time.sleep(0.5)
 
     def printoutput(self):
-        """ Prints the output """
+        """ Print the output """
 
         # We get the hostname of the client for display.
 
@@ -71,19 +71,26 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         myints = ",".join(map(str, mycolour))
 
         # And print...
-
+        print(chr(27) + "[2J", end='')
         print("----------------")
+        print("Time:           ", self.localtime)
+        print("\n", end='')
         print("Client Hostname: {}".format(client[0]))
+        print("\n", end='')
         print("Data Received:   {}".format(self.data))
         print("Data Type Rx:    {}".format(type(self.data)))
         print("Data Length Rx:  {}".format(len(self.data)))
-        print("Integers:        {}".format(myints))
-        print(color("LED Colour", mycolour))
+        print("\n", end='')
+        print("Integers:        ", end='')
+        print(color(myints, mycolour))
         print("----------------")
-        print("\n")
 
     def handle(self):
         """ Request handler """
+
+        # Get request time
+
+        self.localtime = time.asctime( time.localtime(time.time()) )
 
         # self.request.recv is the TCP socket connected to the client
 

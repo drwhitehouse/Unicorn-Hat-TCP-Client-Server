@@ -7,5 +7,5 @@ Installation:
 Requires the following:
 
 - python3
-- unicornhat python module
-- ansicolors python module
+- unicornhat python module (https://github.com/pimoroni/unicorn-hat)
+- ansicolors python module (https://pypi.org/project/ansicolor/)
