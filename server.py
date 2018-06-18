@@ -3,10 +3,10 @@
 Simple Unicorn Hat tcp server.
 """
 
+import uhl.lsd
 import time
 import socket
 import socketserver
-import unicornhat as unicorn
 from colors import color
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
@@ -17,13 +17,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
     override the handle() method to implement communication to the
     client.
     """
-
-    @staticmethod
-    def initunicorn():
-        """ This function initialises the Unicorn hat. """
-        unicorn.rotation(0)
-        unicorn.brightness(0.5)
-        unicorn.set_layout(unicorn.AUTO)
 
     def returnrgb(self):
         """ Slice the data and convert to 3 ints """
@@ -44,16 +37,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         intg = int.from_bytes(green, byteorder='big')
         intb = int.from_bytes(blue, byteorder='big')
         return intr, intg, intb
-
-    def pulse(self):
-        """ This function flashes the hat. """
-        myred, mygreen, myblue = self.returnrgb()
-        unicorn.set_all(myred, mygreen, myblue)
-        unicorn.show()
-        time.sleep(0.5)
-        unicorn.set_all(0, 0, 0)
-        unicorn.show()
-        time.sleep(0.5)
 
     def printoutput(self):
         """ Print the output """
@@ -104,11 +87,16 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         self.request.sendall(self.data)
 
+        # Get the colour
+
+        RED, GREEN, BLUE = self.returnrgb()
+
         # Init the Unicorn Hat and flash!
 
-        self.initunicorn()
+        uhl.lsd.initunicornhat()
+
         for _ in range(0, 30):
-            self.pulse()
+            uhl.lsd.pulse(RED, GREEN, BLUE)
 
 if __name__ == "__main__":
 

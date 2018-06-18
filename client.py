@@ -3,15 +3,8 @@
 Simple Unicorn Hat tcp client.
 """
 
+import uhl.lsc
 import socket
-import random
-
-def getcolour():
-    """ Choose a colour """
-    red = random.randint(0, 255)
-    green = random.randint(0, 255)
-    blue = random.randint(0, 255)
-    return[red, green, blue]
 
 def printoutput(red, green, blue, data, received):
     """ Print the output """
@@ -34,7 +27,7 @@ HOST, PORT = "10.201.0.36", 9999
 
 # Select our three integers (0-255) 
 
-RED, GREEN, BLUE = getcolour()
+RED, GREEN, BLUE = uhl.lsc.getcolour()
 COLOUR = [RED, GREEN, BLUE]
 
 # Make it into bytes
