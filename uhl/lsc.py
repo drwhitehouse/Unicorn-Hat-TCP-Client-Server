@@ -16,9 +16,9 @@ def getcolour():
 
 def shiftcolour(red, green, blue):
     """ shifts colour """
-    red = (red + 5) % 255
-    green = (green + 5) % 255
-    blue = (blue + 5) % 255
+    red = (red + 10) % 255
+    green = (green + 10) % 255
+    blue = (blue + 10) % 255
     return[red, green, blue]
 
 if __name__ == "__main__":
