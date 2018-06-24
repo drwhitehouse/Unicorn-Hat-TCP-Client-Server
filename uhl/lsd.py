@@ -20,6 +20,3 @@ def pulse(myred, mygreen, myblue):
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
     time.sleep(0.5)
-
-if __name__ == "__main__":
-    print("I am the display module.")
