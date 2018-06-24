@@ -3,11 +3,11 @@
 Simple Unicorn Hat tcp server.
 """
 
-import uhl.lsd
 import time
 import socket
 import socketserver
 from colors import color
+import uhl.lightshow
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
     """
@@ -54,7 +54,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         myints = ",".join(map(str, mycolour))
 
         # And print...
-        print(chr(27) + "[2J", end='')
         print("----------------")
         print("Time:           ", self.localtime)
         print("\n", end='')
@@ -73,7 +72,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # Get request time
 
-        self.localtime = time.asctime( time.localtime(time.time()) )
+        self.localtime = time.asctime(time.localtime(time.time()))
 
         # self.request.recv is the TCP socket connected to the client
 
@@ -89,20 +88,17 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # Get the colour
 
-        RED, GREEN, BLUE = self.returnrgb()
+        red, green, blue = self.returnrgb()
 
-        # Init the Unicorn Hat and flash!
+        # Flash the hat
 
-        uhl.lsd.initunicornhat()
-
-        for _ in range(0, 30):
-            uhl.lsd.pulse(RED, GREEN, BLUE)
+        uhl.lightshow.lightshow(red, green, blue)
 
 if __name__ == "__main__":
 
     # Here we specify our HOST and PORT to listen on:
 
-    HOST, PORT = "wongtaisin", 9999
+    HOST, PORT = "10.201.0.36", 9999
 
     # Create the server, binding to localhost on port 9999
 
