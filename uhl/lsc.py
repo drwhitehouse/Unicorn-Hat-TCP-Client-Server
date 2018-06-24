@@ -16,14 +16,14 @@ def getcolour():
 
 def shiftcolour(red, green, blue):
     """ shifts colour """
-    red = (red + 1) % 255
-    green = (green + 1) % 255
-    blue = (blue + 1) % 255
+    red = (red + 5) % 255
+    green = (green + 5) % 255
+    blue = (blue + 5) % 255
     return[red, green, blue]
 
 def warpcolour(red, green, blue):
     """ warps colour """
-    warp = [-1, 0, 1]
+    warp = [-10, -5, -1, 0, 1, 5, 10]
     red = (red + random.choice(warp)) % 255
     green = (green + random.choice(warp)) % 255
     blue = (blue + random.choice(warp)) % 255
