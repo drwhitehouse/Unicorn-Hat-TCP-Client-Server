@@ -14,7 +14,7 @@ def getcolour():
 
 def getshift():
     """ gets a random colour shift """
-    shift = [-15, -10, -5, -1, 0, 1, 5, 10, 15]
+    shift = [-20, -15, -10, -5, -1, 0, 1, 5, 10, 15, 20]
     redshift = random.choice(shift)
     greenshift = random.choice(shift)
     blueshift = random.choice(shift)
@@ -31,7 +31,7 @@ def shiftcolour(red, green, blue, redshift, greenshift, blueshift):
 
 def warpcolour(red, green, blue):
     """ warps colour """
-    warp = [-15, -10, -5, -1, 0, 1, 5, 10, 15]
+    warp = [-20, -15, -10, -5, -1, 0, 1, 5, 10, 15, 20]
     red = (red + random.choice(warp)) % 255
     green = (green + random.choice(warp)) % 255
     blue = (blue + random.choice(warp)) % 255

@@ -15,11 +15,13 @@ def initunicornhat():
     return [width, height]
 
 def getcoords(width, height):
+    """ Gets random coords """
     xcoord = random.randint(0,width - 1)
     ycoord = random.randint(0,height - 1)
     return [xcoord, ycoord]
 
 def blink(xcoord,ycoord,myred,mygreen,myblue):
+    """ Blinks a pixel """
     unicornhat.set_pixel(xcoord,ycoord,myred,mygreen,myblue)
     unicornhat.show()
     time.sleep(0.5)
@@ -39,6 +41,10 @@ def pulse(myred, mygreen, myblue):
 # Kscope
 
 def kscope(width, height , xcoord, ycoord, myred, mygreen, myblue, mytime):
+    """ Freakin' Kaleidoscope F.X. """
+    choices = [0, 1]
+    choice = random.choice(choices)
+    redshift, greenshift, blueshift = lsc.getshift()
     for i in range(mytime):
         if width == height:
             for thisrot in range(0,360,90):
@@ -50,7 +56,10 @@ def kscope(width, height , xcoord, ycoord, myred, mygreen, myblue, mytime):
                 unicornhat.rotation(thisrot)
                 unicornhat.set_pixel(xcoord, ycoord, myred, mygreen, myblue)
             unicornhat.show()
-        myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
+        if choice == 0:
+            myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
+        else:
+            myred, mygreen, myblue = lsc.shiftcolour(myred, mygreen, myblue, redshift, blueshift, greenshift)
         time.sleep(1)
         xcoord, ycoord = getcoords(width,height)
     unicornhat.set_all(0, 0, 0)
