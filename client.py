@@ -3,8 +3,8 @@
 Simple Unicorn Hat tcp client.
 """
 
-import uhl.lsc
 import socket
+import uhl.lsc
 
 def printoutput(red, green, blue, data, received):
     """ Print the output """
@@ -25,7 +25,7 @@ def printoutput(red, green, blue, data, received):
 
 HOST, PORT = "10.201.0.36", 9999
 
-# Select our three integers (0-255) 
+# Select our three integers (0-255)
 
 RED, GREEN, BLUE = uhl.lsc.getcolour()
 COLOUR = [RED, GREEN, BLUE]

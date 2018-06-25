@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 """ lightshow.py """
 
+import random
 from . import lsc
 from . import lsd
-import random
 
 def lightshow(myred, mygreen, myblue):
     """ lightshow """
 
-    # Initialise the Unicorn Hat
+    # Initialise the Unicorn Hat and set some variables
 
-    choices = [ 0, 1, 2, 3 ]
+    choices = [0, 1, 2, 3]
 
     choice = random.choice(choices)
 
@@ -18,11 +18,11 @@ def lightshow(myred, mygreen, myblue):
 
     redshift, greenshift, blueshift = lsc.getshift()
 
-    mytime = 60
+    mytime = 150
 
     xcoord, ycoord = lsd.getcoords(width, height)
 
-    if choice == 0: 
+    if choice == 0:
 
         # Pulse colour from client
 
@@ -31,20 +31,20 @@ def lightshow(myred, mygreen, myblue):
 
     elif choice == 1:
 
-        # Colour shifted
+        # Colour warped
 
-        for _ in range(0, 30):
+        for _ in range(0, 60):
             xcoord, ycoord = lsd.getcoords(width, height)
-            myred, mygreen, myblue = lsc.shiftcolour(myred, mygreen, myblue, redshift, greenshift, blueshift)
+            myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
             lsd.blink(xcoord, ycoord, myred, mygreen, myblue)
 
     elif choice == 2:
 
-        # Colour warped
+        # Colour shifted
 
-        for _ in range(0, 30):
+        for _ in range(0, 90):
             xcoord, ycoord = lsd.getcoords(width, height)
-            myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
+            myred, mygreen, myblue = lsc.shiftcolour(myred, mygreen, myblue, redshift, greenshift, blueshift)
             lsd.blink(xcoord, ycoord, myred, mygreen, myblue)
 
     elif choice == 3:

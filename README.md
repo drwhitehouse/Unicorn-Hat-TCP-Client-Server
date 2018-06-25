@@ -13,4 +13,4 @@ Requires the following:
 ## Documentation
 
 - client.py / server.py are simple tcp/ip client & server
-- ucl containers the modules and the lightshow script
+- ucl contains the modules and the lightshow script
