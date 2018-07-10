@@ -6,10 +6,10 @@ Simple Unicorn Hat tcp client.
 import socket
 import uhl.lsc
 
-def printoutput(red, green, blue, data, received):
+def printoutput(rgb, data, received):
     """ Print the output """
     print("----------------")
-    print("Integers Chosen: {},{},{}".format(red, green, blue))
+    print("Integers Chosen: {},{},{}".format(rgb[0], rgb[1], rgb[2]))
     print("\n", end='')
     print("Data Sent:       {}".format(data))
     print("Data Type Tx:    {}".format(type(data)))
@@ -27,12 +27,11 @@ HOST, PORT = "10.201.0.36", 9999
 
 # Select our three integers (0-255)
 
-RED, GREEN, BLUE = uhl.lsc.getcolour()
-COLOUR = [RED, GREEN, BLUE]
+RGB = uhl.lsc.getcolour()
 
 # Make it into bytes
 
-DATA = bytes(COLOUR)
+DATA = bytes(RGB)
 
 # Create a socket (SOCK_STREAM means a TCP socket)
 
@@ -47,4 +46,4 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
     RECEIVED = sock.recv(3)
 
-printoutput(RED, GREEN, BLUE, DATA, RECEIVED)
+printoutput(RGB, DATA, RECEIVED)
