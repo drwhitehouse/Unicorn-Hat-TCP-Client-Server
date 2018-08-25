@@ -4,6 +4,7 @@
 import random
 from . import lsc
 from . import lsd
+from . import lsk
 
 def lightshow(myred, mygreen, myblue):
     """ lightshow """
@@ -51,4 +52,4 @@ def lightshow(myred, mygreen, myblue):
 
         # Kscope
 
-        lsd.kscope(width, height, xcoord, ycoord, myred, mygreen, myblue, mytime)
+        lsk.kscope(width, height, xcoord, ycoord, myred, mygreen, myblue, mytime)
