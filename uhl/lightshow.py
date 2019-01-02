@@ -6,7 +6,7 @@ from . import lsc
 from . import lsd
 from . import lsk
 
-def lightshow(myred, mygreen, myblue):
+def lightshow(rgb):
     """ lightshow """
 
     # Initialise the Unicorn Hat and set some variables
@@ -17,9 +17,7 @@ def lightshow(myred, mygreen, myblue):
 
     width, height = lsd.initunicornhat()
 
-    redshift, greenshift, blueshift = lsc.getshift()
-
-    mytime = 150
+    shift = lsc.getshift()
 
     xcoord, ycoord = lsd.getcoords(width, height)
 
@@ -28,7 +26,7 @@ def lightshow(myred, mygreen, myblue):
         # Pulse colour from client
 
         for _ in range(0, 5):
-            lsd.pulse(myred, mygreen, myblue)
+            lsd.pulse(rgb[0], rgb[1], rgb[2])
 
     elif choice == 1:
 
@@ -36,7 +34,7 @@ def lightshow(myred, mygreen, myblue):
 
         for _ in range(0, 60):
             xcoord, ycoord = lsd.getcoords(width, height)
-            myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
+            myred, mygreen, myblue = lsc.warpcolour(rgb)
             lsd.blink(xcoord, ycoord, myred, mygreen, myblue)
 
     elif choice == 2:
@@ -45,11 +43,11 @@ def lightshow(myred, mygreen, myblue):
 
         for _ in range(0, 90):
             xcoord, ycoord = lsd.getcoords(width, height)
-            myred, mygreen, myblue = lsc.shiftcolour(myred, mygreen, myblue, redshift, greenshift, blueshift)
+            myred, mygreen, myblue = lsc.shiftcolour(rgb, shift)
             lsd.blink(xcoord, ycoord, myred, mygreen, myblue)
 
     elif choice == 3:
 
         # Kscope
 
-        lsk.kscope(width, height, xcoord, ycoord, myred, mygreen, myblue, mytime)
+        lsk.kscope(width, height, xcoord, ycoord, rgb)

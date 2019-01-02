@@ -88,11 +88,11 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # Get the colour
 
-        red, green, blue = self.returnrgb()
+        rgb = self.returnrgb()
 
         # Flash the hat
 
-        uhl.lightshow.lightshow(red, green, blue)
+        uhl.lightshow.lightshow(rgb)
 
 if __name__ == "__main__":
 

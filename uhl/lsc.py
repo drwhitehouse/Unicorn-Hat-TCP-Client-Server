@@ -22,26 +22,39 @@ def getshift():
 
 # Shift colours
 
-def shiftcolour(red, green, blue, redshift, greenshift, blueshift):
+def shiftcolour(rgb, shift):
     """ shifts colour """
-    red = (red + redshift) % 255
-    green = (green + greenshift) % 255
-    blue = (blue + blueshift) % 255
+    red = (rgb[0] + shift[0]) % 255
+    green = (rgb[1] + shift[1]) % 255
+    blue = (rgb[2] + shift[2]) % 255
     return[red, green, blue]
 
-def warpcolour(red, green, blue):
+def warpcolour(rgb):
     """ warps colour """
     warp = [-20, -15, -10, -5, -1, 0, 1, 5, 10, 15, 20]
-    red = (red + random.choice(warp)) % 255
-    green = (green + random.choice(warp)) % 255
-    blue = (blue + random.choice(warp)) % 255
+    red = (rgb[0] + random.choice(warp)) % 255
+    green = (rgb[1] + random.choice(warp)) % 255
+    blue = (rgb[2] + random.choice(warp)) % 255
     return[red, green, blue]
 
 if __name__ == "__main__":
-    print("I am the colour module.")
+    print("I am the colour module.\n")
     print("getcolour:")
     COLOUR = getcolour()
     print(format(COLOUR))
+    print(type(COLOUR))
+    print()
     print("getshift:")
     SHIFT = getshift()
     print(format(SHIFT))
+    print(type(SHIFT))
+    print()
+    print("shifted:")
+    SHIFTED = shiftcolour(COLOUR, SHIFT)
+    print(format(SHIFTED))
+    print(type(SHIFTED))
+    print()
+    print("warped:")
+    WARPED = warpcolour(COLOUR)
+    print(format(WARPED))
+    print(type(WARPED))
