@@ -9,27 +9,28 @@ from . import lsd
 
 # Kscope
 
-def kscope(width, height , xcoord, ycoord, myred, mygreen, myblue, mytime):
+def kscope(width, height, xcoord, ycoord, rgb):
     """ Freakin' Kaleidoscope F.X. """
     choices = [0, 1]
     choice = random.choice(choices)
-    redshift, greenshift, blueshift = lsc.getshift()
-    for i in range(mytime):
+    shift = lsc.getshift()
+    mytime = 150
+    for _ in range(mytime):
         if width == height:
-            for thisrot in range(0,360,90):
+            for thisrot in range(0, 360, 90):
                 unicornhat.rotation(thisrot)
-                unicornhat.set_pixel(xcoord, ycoord, myred, mygreen, myblue)
+                unicornhat.set_pixel(xcoord, ycoord, rgb[0], rgb[1], rgb[2])
             unicornhat.show()
         else:
-            for thisrot in range(0,270,180):
+            for thisrot in range(0, 270, 180):
                 unicornhat.rotation(thisrot)
-                unicornhat.set_pixel(xcoord, ycoord, myred, mygreen, myblue)
+                unicornhat.set_pixel(xcoord, ycoord, rgb[0], rgb[1], rgb[2])
             unicornhat.show()
         if choice == 0:
-            myred, mygreen, myblue = lsc.warpcolour(myred, mygreen, myblue)
+            rgb = lsc.warpcolour(rgb)
         else:
-            myred, mygreen, myblue = lsc.shiftcolour(myred, mygreen, myblue, redshift, blueshift, greenshift)
+            rgb = lsc.shiftcolour(rgb, shift)
         time.sleep(1)
-        xcoord, ycoord = lsd.getcoords(width,height)
+        xcoord, ycoord = lsd.getcoords(width, height)
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()

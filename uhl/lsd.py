@@ -15,16 +15,16 @@ def initunicornhat():
 
 def getcoords(width, height):
     """ Gets random coords """
-    xcoord = random.randint(0,width - 1)
-    ycoord = random.randint(0,height - 1)
+    xcoord = random.randint(0, width - 1)
+    ycoord = random.randint(0, height - 1)
     return [xcoord, ycoord]
 
-def blink(xcoord,ycoord,myred,mygreen,myblue):
+def blink(xcoord, ycoord, myred, mygreen, myblue):
     """ Blinks a pixel """
-    unicornhat.set_pixel(xcoord,ycoord,myred,mygreen,myblue)
+    unicornhat.set_pixel(xcoord, ycoord, myred, mygreen, myblue)
     unicornhat.show()
     time.sleep(0.5)
-    unicornhat.set_pixel(xcoord,ycoord,0,0,0)
+    unicornhat.set_pixel(xcoord, ycoord, 0, 0, 0)
     unicornhat.show()
     time.sleep(0.5)
 
