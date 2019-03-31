@@ -25,16 +25,16 @@ def printoutput(rgb, data, received):
 
 # Set the working directory in case we are running from cron:
 
-abspath = os.path.abspath(__file__)
-dname = os.path.dirname(abspath)
-os.chdir(dname)
+ABSPATH = os.path.abspath(__file__)
+DNAME = os.path.dirname(ABSPATH)
+os.chdir(DNAME)
 
 # Get the HOST and PORT from the config file
 
-config = configparser.ConfigParser()
-config.read('client.config')
-HOST = config.get("client_config", "hostname")
-PORT = int(config.get("client_config", "port"))
+CONFIG = configparser.ConfigParser()
+CONFIG.read('client.config')
+HOST = CONFIG.get("client_config", "hostname")
+PORT = int(CONFIG.get("client_config", "port"))
 
 # Select our three integers (0-255)
 
