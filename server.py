@@ -96,11 +96,14 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
 if __name__ == "__main__":
 
-    # Here we specify our HOST and PORT to listen on:
+    # Here we get our HOST and PORT to listen on from the config file:
 
-    HOST, PORT = "10.201.0.36", 9999
+    config = configparser.ConfigParser()
+    config.read('server.config')
+    HOST = config.get("server_config", "hostname")
+    PORT = int(config.get("server_config", "port"))
 
-    # Create the server, binding to localhost on port 9999
+    # Create the server
 
     SERVER = socketserver.TCPServer((HOST, PORT), MyTCPHandler)
 
