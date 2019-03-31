@@ -99,10 +99,10 @@ if __name__ == "__main__":
 
     # Here we get our HOST and PORT to listen on from the config file:
 
-    config = configparser.ConfigParser()
-    config.read('server.config')
-    HOST = config.get("server_config", "hostname")
-    PORT = int(config.get("server_config", "port"))
+    CONFIG = configparser.ConfigParser()
+    CONFIG.read('server.config')
+    HOST = CONFIG.get("server_config", "hostname")
+    PORT = int(CONFIG.get("server_config", "port"))
 
     # Create the server
 
