@@ -3,6 +3,7 @@
 Simple Unicorn Hat tcp client.
 """
 
+import configparser
 import socket
 import uhl.lsc
 
@@ -21,9 +22,12 @@ def printoutput(rgb, data, received):
     print("----------------")
     print("\n", end='')
 
-# Here we specify the HOST and PORT to send to, get the colours and assemble the DATA to be sent.
+# Get the HOST and PORT from the config file
 
-HOST, PORT = "10.201.0.36", 9999
+config = configparser.ConfigParser()
+config.read('client.config')
+HOST = config.get("client_config", "hostname")
+PORT = int(config.get("client_config", "port"))
 
 # Select our three integers (0-255)
 

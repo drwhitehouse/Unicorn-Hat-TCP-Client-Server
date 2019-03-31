@@ -1,0 +1,3 @@
+[client_config]
+hostname = <hostname or ip address to send to>
+port = <server port>
