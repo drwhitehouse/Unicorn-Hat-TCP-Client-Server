@@ -3,6 +3,7 @@
 Simple Unicorn Hat tcp client.
 """
 
+import os
 import configparser
 import socket
 import uhl.lsc
@@ -21,6 +22,12 @@ def printoutput(rgb, data, received):
     print("Data Length Rx:  {}".format(len(received)))
     print("----------------")
     print("\n", end='')
+
+# Set the working directory in case we are running from cron:
+
+abspath = os.path.abspath(__file__)
+dname = os.path.dirname(abspath)
+os.chdir(dname)
 
 # Get the HOST and PORT from the config file
 
