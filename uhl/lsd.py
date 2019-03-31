@@ -36,3 +36,15 @@ def pulse(myred, mygreen, myblue):
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
     time.sleep(0.5)
+
+if __name__ == "__main__":
+    print("I am the display module.\n")
+    print("initunicornhat:\n")
+    WIDTH, HEIGHT = initunicornhat()
+    print("Width:  {}".format(WIDTH))
+    print("Height: {}".format(HEIGHT))
+    print("\n")
+    print("getcoords:\n")
+    XCOORD, YCOORD = getcoords(WIDTH, HEIGHT)
+    print("X: {}".format(XCOORD))
+    print("Y: {}".format(YCOORD))
