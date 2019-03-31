@@ -14,3 +14,5 @@ Requires the following:
 
 - client.py / server.py are simple tcp/ip client & server
 - uhl contains the modules and the lightshow script
+- copy client.config.default & server.config.default to client.config & server.config
+- enter client / server details as appropriate

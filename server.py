@@ -3,6 +3,7 @@
 Simple Unicorn Hat tcp server.
 """
 
+import configparser
 import time
 import socket
 import socketserver
