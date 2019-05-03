@@ -106,3 +106,4 @@ venv.bak/
 # My configs
 client.config
 server.config
+tags
