@@ -11,7 +11,7 @@ def lightshow(rgb):
 
     # Initialise the Unicorn Hat and set some variables
 
-    choices = [0, 1, 2, 3]
+    choices = [0, 1, 2, 3, 4, 5]
 
     choice = random.choice(choices)
 
@@ -51,3 +51,15 @@ def lightshow(rgb):
         # Kscope
 
         lsk.kscope(width, height, xcoord, ycoord, rgb)
+
+    elif choice == 4:
+
+	# Fill
+
+        lsd.fill(width, height, rgb)
+
+    elif choice == 5:
+
+	# Fill
+
+        lsd.ftoo(width, height, rgb)
