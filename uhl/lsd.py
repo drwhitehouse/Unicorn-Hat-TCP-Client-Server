@@ -66,23 +66,6 @@ def fill(width, height, rgb):
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
 
-# Fill 2
-
-def ftoo(width, height, rgb):
-    myrot = getrot(width, height)
-    myrandom = random.randint(0,1)
-    unicornhat.rotation(myrot)
-    for x in range(width):
-        for y in range(height):
-            unicornhat.set_pixel(x, y, rgb[0], rgb[1], rgb[2])
-            unicornhat.show()
-            time.sleep(1)
-            if myrandom > 0:
-                unicornhat.set_pixel(x,y,0,0,0)
-    time.sleep(mytime / 2)
-    unicornhat.set_all(0, 0, 0)
-    unicornhat.show()
-
 if __name__ == "__main__":
     print("I am the display module.\n")
     print("initunicornhat:\n")
