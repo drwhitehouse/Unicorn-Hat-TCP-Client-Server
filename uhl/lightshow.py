@@ -24,14 +24,14 @@ def lightshow(rgb):
     if choice == 0:
 
         # Pulse colour from client
-        MESSAGE = "Pulse"
+        message = "Pulse"
         for _ in range(0, 5):
             lsd.pulse(rgb[0], rgb[1], rgb[2])
 
     elif choice == 1:
 
         # Colour warped
-        MESSAGE = "Warp"
+        message = "Warp"
         for _ in range(0, 60):
             xcoord, ycoord = lsd.getcoords(width, height)
             myred, mygreen, myblue = lsc.warpcolour(rgb)
@@ -40,7 +40,7 @@ def lightshow(rgb):
     elif choice == 2:
 
         # Colour shifted
-        MESSAGE = "Shift"
+        message = "Shift"
         for _ in range(0, 90):
             xcoord, ycoord = lsd.getcoords(width, height)
             myred, mygreen, myblue = lsc.shiftcolour(rgb, shift)
@@ -49,13 +49,13 @@ def lightshow(rgb):
     elif choice == 3:
 
         # Kscope
-        MESSAGE = "Kaleidoscope"
+        message = "Kaleidoscope"
         lsk.kscope(width, height, xcoord, ycoord, rgb)
 
     elif choice == 4:
 
 	# Fill
-        MESSAGE = "Fill"
+        message = "Fill"
         lsd.fill(width, height, rgb)
 
-    return MESSAGE
+    return message
