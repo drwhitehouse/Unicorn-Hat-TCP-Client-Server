@@ -66,11 +66,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("\n", end='')
         print("Integers:        ", end='')
         print(color(myints, mycolour))
-        print("----------------")
 
     def printstatus(self):
         # And print...
-        print("----------------")
         print("Message:           ", self.message)
         print("----------------")
 
