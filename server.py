@@ -68,6 +68,12 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print(color(myints, mycolour))
         print("----------------")
 
+    def printstatus(self):
+        # And print...
+        print("----------------")
+        print("Message:           ", self.message)
+        print("----------------")
+
     def handle(self):
         """ Request handler """
 
@@ -93,7 +99,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 
         # Flash the hat
 
-        uhl.lightshow.lightshow(rgb)
+        self.message = uhl.lightshow.lightshow(rgb)
+
+        self.printstatus()
 
 if __name__ == "__main__":
 
