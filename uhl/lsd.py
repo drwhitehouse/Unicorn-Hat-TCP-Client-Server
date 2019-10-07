@@ -24,7 +24,7 @@ def getcoords(width, height):
 
 def getduration():
     """ How long to display for """
-    durations = [5, 10, 15, 30, 60]
+    durations = [10, 30, 60, 120, 240]
     duration = random.choice(durations)
     return duration
 
@@ -76,7 +76,7 @@ def fill(width, height, rgb):
     """ Fill """
     myrot = getrot(width, height)
     myrandom = random.randint(0, 1)
-    mytime = 60
+    mytime = getduration()
     unicornhat.rotation(myrot)
     for my_x in range(width):
         for my_y in range(height):
