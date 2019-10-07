@@ -36,6 +36,27 @@ def getrot(width, height):
         myrot = random.randrange(0, 270, 180)
     return myrot
 
+def walk(width, height, xcoord, ycoord):
+    """ Take the pixel for a walk stepwise """
+    choices_advance = [-1, 1]
+    choice_advance = random.choice(choices_advance)
+    choice_xy = random.randint(0, 1)
+    if choice_xy == 0:
+        newx = xcoord + choice_advance
+        newy = ycoord
+        if newx < 0:
+            newx = 0
+        if newx > width:
+            newx = width
+    if choice_xy == 1:
+        newx = xcoord
+        newy = ycoord + choice_advance
+        if newy < 0:
+            newy = 0
+        if newy > height:
+            newy = height
+    return newx, newy
+
 def blink(width, height, myred, mygreen, myblue):
     """ Blinks a pixel """
     duration = getduration()
@@ -97,6 +118,30 @@ def fill(width, height, rgb):
                 for myother_y in range(height):
                     unicornhat.set_pixel(myother_x, myother_y, 0, 0, 0)
         time.sleep(mytime / width)
+    unicornhat.set_all(0, 0, 0)
+    unicornhat.show()
+
+# Eater
+
+def eater(width, height, rgb):
+    """ Eater """
+    duration = getduration()
+    rgb2 = lsc.getcolour()
+    xcoord, ycoord = getcoords(width, height)
+    unicornhat.set_all(rgb[0], rgb[1], rgb[2])
+    unicornhat.show()
+    unicornhat.set_pixel(xcoord, ycoord, rgb2[0], rgb2[1], rgb2[2])
+    unicornhat.show()
+    for _ in range(duration):
+        xcoord, ycoord = walk(width, height, xcoord, ycoord)
+        target_rgb = unicornhat.get_pixel(xcoord, ycoord)
+        if target_rgb != rgb2:
+            unicornhat.set_pixel(xcoord, ycoord, rgb2[0], rgb2[1], rgb2[2])
+            unicornhat.show()
+            time.sleep(0.5)
+            unicornhat.set_pixel(xcoord, ycoord, 0, 0, 0)
+            unicornhat.show()
+        time.sleep(0.5)
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
 

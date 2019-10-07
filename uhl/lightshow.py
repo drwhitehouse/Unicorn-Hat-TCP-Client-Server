@@ -2,7 +2,6 @@
 """ lightshow.py """
 
 import random
-from . import lsc
 from . import lsd
 from . import lsk
 
@@ -11,7 +10,7 @@ def lightshow(rgb):
 
     # Initialise the Unicorn Hat and set some variables
 
-    choices = [0, 1, 2, 3]
+    choices = [0, 1, 2, 3, 4]
     choice = random.choice(choices)
     width, height = lsd.initunicornhat()
 
@@ -38,5 +37,11 @@ def lightshow(rgb):
 	# Fill
         message = "Fill"
         lsd.fill(width, height, rgb)
+
+    elif choice == 4:
+
+	# Eater
+        message = "Eater"
+        lsd.eater(width, height, rgb)
 
     return message
