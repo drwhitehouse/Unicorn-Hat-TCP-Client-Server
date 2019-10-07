@@ -40,12 +40,15 @@ def blink(xcoord, ycoord, myred, mygreen, myblue):
 
 def pulse(myred, mygreen, myblue):
     """ This function flashes the hat. """
-    unicornhat.set_all(myred, mygreen, myblue)
-    unicornhat.show()
-    time.sleep(0.5)
-    unicornhat.set_all(0, 0, 0)
-    unicornhat.show()
-    time.sleep(0.5)
+    choices = [5, 10, 15, 30, 60]
+    choice = random.choice(choices)
+    for _ in range(0, choice):
+        unicornhat.set_all(myred, mygreen, myblue)
+        unicornhat.show()
+        time.sleep(0.5)
+        unicornhat.set_all(0, 0, 0)
+        unicornhat.show()
+        time.sleep(0.5)
 
 # Fill
 
