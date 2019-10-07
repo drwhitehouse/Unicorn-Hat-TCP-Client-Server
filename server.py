@@ -66,10 +66,10 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         print("\n", end='')
         print("Integers:        ", end='')
         print(color(myints, mycolour))
-
-    def printstatus(self):
-        # And print...
-        print("Message:           ", self.message)
+        print("\n", end='')
+        print("Message:        ", self.message)
+        print("\n", end='')
+        print("Time Elapsed:   ", self.toc - self.tic)
         print("----------------")
 
     def handle(self):
@@ -78,16 +78,13 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # Get request time
 
         self.localtime = time.asctime(time.localtime(time.time()))
+        self.tic = time.perf_counter()
 
         # self.request.recv is the TCP socket connected to the client
 
         self.data = self.request.recv(3)
 
-        # And print...
-
-        self.printoutput()
-
-        # Just send back the same data we received.
+        # First just send back the same data we received to the client
 
         self.request.sendall(self.data)
 
@@ -98,8 +95,11 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
         # Flash the hat
 
         self.message = uhl.lightshow.lightshow(rgb)
+        self.toc = time.perf_counter()
 
-        self.printstatus()
+        # And print...
+
+        self.printoutput()
 
 if __name__ == "__main__":
 
