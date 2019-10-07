@@ -38,23 +38,19 @@ def getrot(width, height):
 
 def walk(width, height, rgb, xcoord, ycoord):
     """ Take the pixel for a walk stepwise """
-    choices_advance = [-1, 1]
-    choice_advance = random.choice(choices_advance)
-    choice_xy = random.randint(0, 1)
-    if choice_xy == 0:
-        newx = xcoord + choice_advance
-        newy = ycoord
-        if newx < 0:
-            newx = 0
-        if newx > width - 1:
-            newx = width - 1
-    if choice_xy == 1:
-        newx = xcoord
-        newy = ycoord + choice_advance
-        if newy < 0:
-            newy = 0
-        if newy > height - 1:
-            newy = height - 1
+    choices_advance = [-1, 0, 1]
+    choice_x = random.choice(choices_advance)
+    choice_y = random.choice(choices_advance)
+    newx = xcoord + choice_x
+    newy = ycoord + choice_y
+    if newx < 0:
+        newx = 0
+    if newx > width - 1:
+        newx = width - 1
+    if newy < 0:
+        newy = 0
+    if newy > height - 1:
+        newy = height - 1
     target_rgb = unicornhat.get_pixel(newx, newy)
     if target_rgb == rgb:
         return newx, newy
