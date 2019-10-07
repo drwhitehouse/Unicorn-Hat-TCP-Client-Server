@@ -9,12 +9,13 @@ from . import lsd
 
 # Kscope
 
-def kscope(width, height, xcoord, ycoord, rgb):
+def kscope(width, height, rgb):
     """ Freakin' Kaleidoscope F.X. """
     choices = [0, 1]
     choice = random.choice(choices)
     shift = lsc.getshift()
     mytime = 150
+    xcoord, ycoord = lsd.getcoords(width, height)
     for _ in range(mytime):
         if width == height:
             for thisrot in range(0, 360, 90):
