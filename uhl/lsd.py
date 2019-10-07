@@ -66,14 +66,12 @@ def pulse(myred, mygreen, myblue):
     colourfx = random.choice(choices)
     shift = lsc.getshift()
     for _ in range(0, duration):
-        if colourfx == 0:
-            unicornhat.set_all(myred, mygreen, myblue)
-        if colourfx == 1:
-            myred, mygreen, myblue = lsc.warpcolour((myred, mygreen, myblue))
-            unicornhat.set_all(myred, mygreen, myblue)
-        if colourfx == 2:
-            myred, mygreen, myblue = lsc.shiftcolour((myred, mygreen, myblue), shift)
-            unicornhat.set_all(myred, mygreen, myblue)
+        if colourfx > 0:
+            if colourfx == 1:
+                myred, mygreen, myblue = lsc.warpcolour((myred, mygreen, myblue))
+            if colourfx == 2:
+                myred, mygreen, myblue = lsc.shiftcolour((myred, mygreen, myblue), shift)
+        unicornhat.set_all(myred, mygreen, myblue)
         unicornhat.show()
         time.sleep(0.5)
         unicornhat.set_all(0, 0, 0)
