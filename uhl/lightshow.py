@@ -25,8 +25,7 @@ def lightshow(rgb):
 
         # Pulse colour from client
         message = "Pulse"
-        for _ in range(0, 5):
-            lsd.pulse(rgb[0], rgb[1], rgb[2])
+        lsd.pulse(rgb[0], rgb[1], rgb[2])
 
     elif choice == 1:
 
