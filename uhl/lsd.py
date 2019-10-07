@@ -39,8 +39,9 @@ def getrot(width, height):
 def blink(width, height, myred, mygreen, myblue):
     """ Blinks a pixel """
     duration = getduration()
+    fxchoices = [0, 1, 2]
+    colourfx = random.choice(fxchoices)
     choices = [0, 1]
-    colourfx = random.choice(choices)
     onoff = random.choice(choices)
     shift = lsc.getshift()
     for _ in range(0, duration):
@@ -52,10 +53,11 @@ def blink(width, height, myred, mygreen, myblue):
             unicornhat.set_pixel(xcoord, ycoord, 0, 0, 0)
         unicornhat.show()
         time.sleep(0.5)
-        if colourfx == 0:
-            myred, mygreen, myblue = lsc.warpcolour((myred, mygreen, myblue))
-        if colourfx == 1:
-            myred, mygreen, myblue = lsc.shiftcolour((myred, mygreen, myblue), shift)
+        if colourfx > 0:
+            if colourfx == 1:
+                myred, mygreen, myblue = lsc.warpcolour((myred, mygreen, myblue))
+            if colourfx == 2:
+                myred, mygreen, myblue = lsc.shiftcolour((myred, mygreen, myblue), shift)
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
 
