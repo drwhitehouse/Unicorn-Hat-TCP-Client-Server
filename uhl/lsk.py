@@ -14,7 +14,7 @@ def kscope(width, height, rgb):
     choices = [0, 1]
     choice = random.choice(choices)
     shift = lsc.getshift()
-    mytime = 150
+    mytime = lsd.getduration()
     xcoord, ycoord = lsd.getcoords(width, height)
     for _ in range(mytime):
         if width == height:
