@@ -1,7 +1,6 @@
 #!/usr/bin/python3
 """ lsd.py """
 
-import os
 import time
 import random
 import unicornhat
@@ -23,10 +22,11 @@ def getcoords(width, height):
 # Rotation
 
 def getrot(width, height):
+    """ Get rotation """
     if width == height:
-        myrot = random.randrange(0,360,90)
+        myrot = random.randrange(0, 360, 90)
     else:
-        myrot = random.randrange(0,270,180)
+        myrot = random.randrange(0, 270, 180)
     return myrot
 
 def blink(xcoord, ycoord, myred, mygreen, myblue):
@@ -53,18 +53,19 @@ def pulse(myred, mygreen, myblue):
 # Fill
 
 def fill(width, height, rgb):
+    """ Fill """
     myrot = getrot(width, height)
-    myrandom = random.randint(0,1)
+    myrandom = random.randint(0, 1)
     mytime = 60
     unicornhat.rotation(myrot)
-    for x in range(width):
-        for y in range(height):
-            unicornhat.set_pixel(x, y, rgb[0], rgb[1], rgb[2])
+    for my_x in range(width):
+        for my_y in range(height):
+            unicornhat.set_pixel(my_x, my_y, rgb[0], rgb[1], rgb[2])
         unicornhat.show()
         if myrandom > 0:
-            for x in range(width):
-                for y in range(height):
-                    unicornhat.set_pixel(x,y,0,0,0)
+            for myother_x in range(width):
+                for myother_y in range(height):
+                    unicornhat.set_pixel(myother_x, myother_y, 0, 0, 0)
         time.sleep(mytime / width)
     unicornhat.set_all(0, 0, 0)
     unicornhat.show()
