@@ -44,13 +44,13 @@ def walk(width, height, rgb, xcoord, ycoord):
     newx = xcoord + choice_x
     newy = ycoord + choice_y
     if newx < 0:
-        newx = 0
+        newx = width -1
     if newx > width - 1:
-        newx = width - 1
+        newx = 0
     if newy < 0:
-        newy = 0
+        newy = height -1
     if newy > height - 1:
-        newy = height - 1
+        newy = 0
     target_rgb = unicornhat.get_pixel(newx, newy)
     if target_rgb == rgb:
         return newx, newy
