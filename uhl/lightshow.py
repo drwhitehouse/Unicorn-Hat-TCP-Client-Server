@@ -11,7 +11,8 @@ def lightshow(rgb):
     # Initialise the Unicorn Hat and set some variables
 
     choices = [0, 1, 2, 3, 4]
-    choice = random.choice(choices)
+    #choice = random.choice(choices)
+    choice = 3
     width, height = lsd.initunicornhat()
 
     if choice == 0:
